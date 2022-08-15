@@ -16,7 +16,7 @@ const unsplashBaseUrl = 'https://api.unsplash.com/photos';
 function imageLoaded() {
     imagesLoaded += 1;
 
-    if (imageLoaded === totalImages) {
+    if (imagesLoaded === totalImages) {
         ready = true;
         loader.hidden = true;
     }
@@ -26,7 +26,7 @@ function imageLoaded() {
 // Create ELements for Links & Photos, and add them to DOM
 
 function displayPhotos() {
-    imageLoaded = 0;
+    imagesLoaded = 0;
     totalImages = photosArray.length;
 
     photosArray.forEach(photo => {
@@ -43,7 +43,7 @@ function displayPhotos() {
         image.setAttribute('title', attribute);
 
         // Event Listener which checks when each image is finished loading
-        image.addEventListener('load', imageLoaded);
+        image.addEventListener('load', () => {imageLoaded});
 
         // Put <img> inside <a>, then put both inside imageContainer Element
         item.appendChild(image);
