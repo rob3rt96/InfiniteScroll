@@ -24,7 +24,6 @@ function imageLoaded() {
 
 
 // Create ELements for Links & Photos, and add them to DOM
-
 function displayPhotos() {
     imagesLoaded = 0;
     totalImages = photosArray.length;
@@ -38,12 +37,12 @@ function displayPhotos() {
         // Create <img> for photo
         const image = document.createElement('img');
         image.setAttribute('src', photo.urls.regular);
-        const attribute = photo.alt_description === null ? photo.description : 'none';
-        image.setAttribute('alt', attribute);
-        image.setAttribute('title', attribute);
+        const uniqueAttribute = photo.alt_description === null ? photo.description : 'none';
+        image.setAttribute('alt', uniqueAttribute);
+        image.setAttribute('title', uniqueAttribute);
 
         // Event Listener which checks when each image is finished loading
-        image.addEventListener('load', () => {imageLoaded});
+        image.addEventListener('load', imageLoaded);
 
         // Put <img> inside <a>, then put both inside imageContainer Element
         item.appendChild(image);
@@ -54,7 +53,6 @@ function displayPhotos() {
 
 
 // Get photos from Unsplash API
-
 const getPhotos = async () => {
     const randomEndpoint = '/random/';
     const requestParams = `?client_id=${apiKey}&count=${count}`;
@@ -80,5 +78,4 @@ window.addEventListener('scroll', () => {
 
 
 // On load
-
 getPhotos();
